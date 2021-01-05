@@ -1,0 +1,28 @@
+Options +FollowSymLinks -Indexes
+# Options +FollowSymLinks +Indexes
+# IndexIgnore */*
+
+ErrorDocument 403 "you don't even *go* here."
+# ErrorDocument 500 "is *this* thing on?"
+
+# Turn on the RewriteEngine
+RewriteEngine On
+
+# delete trailing slash (not sure this works)
+# or maybe it works -- but not for directories?
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_URI} (.+)/$
+# RewriteRule ^ %1 [L,R=301]
+
+# remove .php
+# RewriteCond %{REQUEST_FILENAME}.php -f
+# RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [L]
+
+# direct everything to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ index.php [L]
+
+# change upload limit
+php_value upload_max_filesize 100M
+php_value post_max_size 102M
