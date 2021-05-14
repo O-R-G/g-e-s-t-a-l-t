@@ -118,6 +118,10 @@ blockquote {
     margin-bottom: 22px;
 }
 
+#columns .break {
+    break-after: column;
+}
+
 #notes {
     border-top: 1px solid #000;
     margin-top: 33px;
