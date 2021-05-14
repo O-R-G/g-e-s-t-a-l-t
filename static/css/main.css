@@ -118,8 +118,9 @@ blockquote {
     margin-bottom: 22px;
 }
 
-#columns .break {
+#columns div.break {
     break-after: column;
+    margin-bottom: initial;
 }
 
 #notes {
