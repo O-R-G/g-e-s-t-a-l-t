@@ -118,9 +118,9 @@ blockquote {
     margin-bottom: 22px;
 }
 
-#columns div.break {
+#columns .break {
     break-after: column;
-    margin-bottom: initial;
+    margin-bottom: 0px;
 }
 
 #notes {
@@ -311,6 +311,7 @@ blockquote {
 @media screen and (max-width: 768px) {
     #columns .break {
         break-after: initial;
+        margin-bottom: -22px;
     }
 }
 
@@ -318,5 +319,6 @@ blockquote {
 @media screen and (max-width: 500px) {
     #columns .break {
         break-after: initial;
+        margin-bottom: -22px;
     }
 }
