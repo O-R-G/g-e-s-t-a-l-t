@@ -30,5 +30,5 @@ if(!$uu->id) {
 
 ?><script type='text/javascript' src='/static/js/global.js'></script>
 <script type='text/javascript' src='/static/js/menu.js'></script>
-<script src='static/js/badge.js'></script>
+<script type='text/javascript' src='/static/js/badge.js'></script>
 <script>badge_init();</script>
