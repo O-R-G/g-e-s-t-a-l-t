@@ -65,9 +65,56 @@ function badge_animate() {
     // if (thisStep == 0) { direction = !direction; }
     // console.log(thisStep);
 
+/*
     context.beginPath();
     context.arc(centerX, centerY, radius, 0, thisStep, false);
     context.stroke();
+*/
+
+// https://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
+    a = 1;
+    b = 3;
+    loops = 1.25;
+
+    // context.rotate(1 * Math.PI / 180, centerX, centerY);
+// rotate around center
+// ** in process **
+
+// https://stackoverflow.com/questions/37914999/how-to-rotate-a-canvas-object-around-its-center-following-mouse-move-event
+// https://stackoverflow.com/questions/54487721/how-to-rotate-an-image-on-an-html5-canvas-around-center
+
+
+/*
+context.save();
+context.translate(100 + width/2, 100 + height/2);
+context.rotate(-angle);
+context.translate(-width/2, -height/2);
+context.strokeRect(0, 0, 100, 100);
+context.restore();
+*/
+
+// dwg based on 
+// https://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
+
+    context.moveTo(centerX, centerY);
+    context.beginPath();
+    for (i = 0; i < 360 * loops; i++) {
+        angle = 0.1 * i;
+        x = centerX + (a + b * angle) * Math.cos(angle);
+        y = centerY + (a + b * angle) * Math.sin(angle);
+
+        context.lineTo(x, y);
+    }
+    context.strokeStyle = "#000";
+    context.stroke();
+
+
+
+
+
+
+
+
     t = setTimeout('badge_animate()', delay);
 }
 
