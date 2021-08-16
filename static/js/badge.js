@@ -83,19 +83,28 @@ function badge_animate() {
 // https://stackoverflow.com/questions/37914999/how-to-rotate-a-canvas-object-around-its-center-following-mouse-move-event
 // https://stackoverflow.com/questions/54487721/how-to-rotate-an-image-on-an-html5-canvas-around-center
 
+var angle = -0.1;
+var rectsize = 50;
+// context.fillStyle = "#F00";
+// context.fillRect(0, 0, canvas.width, canvas.height);
+// console.log(counter);
 
-/*
+// is this way better than the above with centerX and centerY?
+
+/* rotate */
+
 context.save();
-context.translate(100 + width/2, 100 + height/2);
-context.rotate(-angle);
-context.translate(-width/2, -height/2);
-context.strokeRect(0, 0, 100, 100);
+context.translate(canvas.width/2 - rectsize/2, canvas.width/2 - rectsize/2);
+context.translate(rectsize/2, rectsize/2);
+context.rotate(angle*counter);
+context.translate(-rectsize/2, -rectsize/2);
+context.strokeRect(0, 0, rectsize, rectsize);
 context.restore();
-*/
 
 // dwg based on 
 // https://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
 
+/*
     context.moveTo(centerX, centerY);
     context.beginPath();
     for (i = 0; i < 360 * loops; i++) {
@@ -107,13 +116,7 @@ context.restore();
     }
     context.strokeStyle = "#000";
     context.stroke();
-
-
-
-
-
-
-
+*/
 
     t = setTimeout('badge_animate()', delay);
 }
