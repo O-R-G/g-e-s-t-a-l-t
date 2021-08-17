@@ -16,6 +16,11 @@ var centerX,
     radius,
     direction;
 var counter;
+var a = 1,
+    b = 3,
+    loops = 1.25,
+    // loops = 2.25,
+    increment = -0.025;                     // aka rotate speed
 
 function badge_init() {
     var badge = document.getElementById("badge");
@@ -53,70 +58,38 @@ function badge_init() {
     // delay = 25; 
     delay = 10; 
     direction = 1;
+
+console.log(canvas.width);
+
     badge_animate();
 }
+
 
 function badge_animate() {
     counter++;
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var thisStep = (counter % frames) * step * direction;
 
-    // change direction? in process
-    // if (thisStep == 0) { direction = !direction; }
-    // console.log(thisStep);
+    context.save();
+    context.translate(centerX, centerY);    // mv to abs. center
+    context.rotate(increment * counter);    // rotate
 
-/*
-    context.beginPath();
-    context.arc(centerX, centerY, radius, 0, thisStep, false);
-    context.stroke();
-*/
+    /* in process */
+    // context.scale(2, 2);                    // scale relative to canvas
+                                            // or better, draw relative
+                                            // to canvas below
+    // loops = .5;      // determines number of loops in spiral
+                        // which is one way to determine size
 
-// https://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
-    a = 1;
-    b = 3;
-    loops = 1.25;
-
-    // context.rotate(1 * Math.PI / 180, centerX, centerY);
-// rotate around center
-// ** in process **
-
-// https://stackoverflow.com/questions/37914999/how-to-rotate-a-canvas-object-around-its-center-following-mouse-move-event
-// https://stackoverflow.com/questions/54487721/how-to-rotate-an-image-on-an-html5-canvas-around-center
-
-var angle = -0.1;
-var rectsize = 50;
-// context.fillStyle = "#F00";
-// context.fillRect(0, 0, canvas.width, canvas.height);
-// console.log(counter);
-
-// is this way better than the above with centerX and centerY?
-
-/* rotate */
-
-context.save();
-context.translate(canvas.width/2 - rectsize/2, canvas.width/2 - rectsize/2);
-context.translate(rectsize/2, rectsize/2);
-context.rotate(angle*counter);
-context.translate(-rectsize/2, -rectsize/2);
-context.strokeRect(0, 0, rectsize, rectsize);
-context.restore();
-
-// dwg based on 
-// https://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
-
-/*
-    context.moveTo(centerX, centerY);
-    context.beginPath();
+    context.beginPath();                    // draw spiral
     for (i = 0; i < 360 * loops; i++) {
         angle = 0.1 * i;
-        x = centerX + (a + b * angle) * Math.cos(angle);
-        y = centerY + (a + b * angle) * Math.sin(angle);
-
+        x = (a + b * angle) * Math.cos(angle);
+        y = (a + b * angle) * Math.sin(angle);
         context.lineTo(x, y);
     }
     context.strokeStyle = "#000";
     context.stroke();
-*/
+    context.restore();
 
     t = setTimeout('badge_animate()', delay);
 }
