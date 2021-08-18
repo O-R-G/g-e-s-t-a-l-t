@@ -19,8 +19,9 @@ var counter;
 var a = 1,
     b = 3,
     loops = 1.25,
-    // loops = 2.25,
     increment = -0.025;                     // aka rotate speed
+var scaler = 1.0,                           // adjusts dynamically
+    canvas_base = 350;                      // base canvas size for spiral
 
 function badge_init() {
     var badge = document.getElementById("badge");
@@ -59,7 +60,8 @@ function badge_init() {
     delay = 10; 
     direction = 1;
 
-console.log(canvas.width);
+    // set spiral b size based on current canvas size
+    scaler = canvas.width / canvas_base;
 
     badge_animate();
 }
@@ -72,14 +74,7 @@ function badge_animate() {
     context.save();
     context.translate(centerX, centerY);    // mv to abs. center
     context.rotate(increment * counter);    // rotate
-
-    /* in process */
-    // context.scale(2, 2);                    // scale relative to canvas
-                                            // or better, draw relative
-                                            // to canvas below
-    // loops = .5;      // determines number of loops in spiral
-                        // which is one way to determine size
-
+    context.scale(scaler, scaler);          // adjust spiral size 
     context.beginPath();                    // draw spiral
     for (i = 0; i < 360 * loops; i++) {
         angle = 0.1 * i;
