@@ -322,3 +322,11 @@ blockquote {
         margin-bottom: -22px;
     }
 }
+
+/* print */
+@media print {
+    .make a {
+        color: #000;
+    }
+}
+
