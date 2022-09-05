@@ -335,6 +335,11 @@ blockquote {
     break-after: page;
 }
 
+.make #about a[href^="/print"], 
+.make #about a[href^="/read"] {
+    display: none;
+}
+
 .pdf #columns {
     columns: 100px 6;
 }
