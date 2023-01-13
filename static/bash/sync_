@@ -8,6 +8,7 @@
 
 DATE=`date +%Y-%m-%d`
 WWW_LOCAL="/Library/Webserver/Documents/site"
+WWW_REMOTE="/var/www/html"
 SQL="$WWW_LOCAL/$DATE.sql"
 LOG="$WWW_LOCAL/static/bash/log"
 DB_USER_REMOTE="username"
@@ -23,8 +24,8 @@ WWW_HOST_REMOTE="example.com"
 
 echo "\n$DATE" >>$LOG
 echo "\nStart mysqldump ..."
-mysqldump -u $DB_USER_REMOTE -p$DB_PASS_REMOTE -h $DB_HOST_REMOTE $DB_NAME_REMOTE > $SQL 2>>$LOG
+mysqldump -u $DB_USER_REMOTE -p$DB_PASS_REMOTE -h $DB_HOST_REMOTE $DB_NAME_REMOTE --no-tablespaces --column-statistics=0 > $SQL 2>>$LOG
 mysql -u $DB_USER_LOCAL -p$DB_PASS_LOCAL $DB_NAME_LOCAL < $SQL 2>>$LOG
 echo "\nStart rsync ..."
-rsync -azP $WWW_USER_REMOTE@$WWW_HOST_REMOTE:/var/www/html/media/ $WWW_LOCAL/media 2>>$LOG
+rsync -azP $WWW_USER_REMOTE@$WWW_HOST_REMOTE:$WWW_REMOTE/media/ $WWW_LOCAL/media 2>>$LOG
 rm $SQL
