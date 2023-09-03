@@ -305,6 +305,7 @@ blockquote {
     font-size: 10px;
     line-height: 15px;
     break-inside: avoid;
+    word-wrap: break-word;
 }
 
 .make #notes a::before {
