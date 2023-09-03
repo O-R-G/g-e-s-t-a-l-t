@@ -368,7 +368,9 @@ blockquote {
     .make #columns {
         padding: 0px;
     }
+    /* firefox fix
     img, video {
         filter: none;
     }
+    */
 }
