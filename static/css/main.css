@@ -374,4 +374,10 @@ blockquote {
         filter: none;
     }
     */
+    .make #body img {
+        margin-left: 0px;
+    }
+    .make video {
+        display: none;
+    }
 }
